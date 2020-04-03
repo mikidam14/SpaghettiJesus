@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import myapp.model.Employee;
 import myapp.model.Event;
 import myapp.model.Follower;
+import myapp.model.Utente;
 import myapp.service.CategoryService;
 import myapp.service.EmployeeService;
 import myapp.service.EventService;
 import myapp.service.FollowerService;
+import myapp.service.SettoreService;
+import myapp.service.UtenteService;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.ModelAttribute;
  
@@ -43,7 +46,13 @@ public class AppController {
     
     @Autowired
     EventService eservice;
- 
+    
+    @Autowired
+    SettoreService settoreservice;
+    
+    @Autowired
+    UtenteService utenteservice;
+    
     /*
      * This method will list all existing employees.
      */
@@ -99,10 +108,15 @@ public class AppController {
         return "redirect:/";
     }*/
     
+    
+    /*
+           ROBA VECCHIA; SERVE PER ESEMPIO!!! NON TOCCARE!!!
+
+    
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String index(ModelMap model) {
         model.addAttribute("follower", new Follower());
-        return "login";
+        return "login2";
     }
     
     @RequestMapping(value = {"/checkLogin"}, method = RequestMethod.POST)
@@ -136,4 +150,24 @@ public class AppController {
         
         return "redirect:/showcateogires";
     }
+    */
+    
+    
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    public String index(ModelMap model) {
+        model.addAttribute("utente", new Utente());
+        model.addAttribute("settori", settoreservice.findAllSettori());
+        return "login";
+    }
+    
+    @RequestMapping(value = {"/checkLogin"}, method = RequestMethod.POST)
+    public String checkLogin(@ModelAttribute("utente") Utente u, ModelMap model){
+        model.addAttribute("user", u);
+        List<Utente> users = utenteservice.findAllUtenti();
+        for(Utente ui : users){
+            if(ui.getUsername().equals(u.getUsername()) && ui.getPassword().equals(u.getPassword())) return "redirect:/menuUtente";
+        }
+        return "redirect:/";
+    }
+    
 }

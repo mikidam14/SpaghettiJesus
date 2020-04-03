@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Feb 11, 2020, 5:34:47 PM
+    Document   : login2
+    Created on : Apr 3, 2020, 12:10:16 PM
     Author     : michele
 --%>
 
@@ -20,17 +20,18 @@
         <!--<p><label>Username: <input type="text" name="username"/></label></p>
         <p><label>Password: <input type="password" name="password"/></label></p>-->
         
-        <form:form action="checkLogin" method="POST" modelAttribute="utente">
+        <form:form action="checkLogin" method="POST" modelAttribute="follower">
+        <form:input type = "hidden" path="id" id="id"/>
         <table>
             <tr>
                 <td><label for="username">Username: </label> </td>
-                <td><form:input path="Username" id="username"/></td>
+                <td><form:input path="username" id="username"/></td>
             </tr>
          
      
             <tr>
                 <td><label for="password">Password: </label> </td>
-                <td><form:input type = "Pswd" path="password" id="password"/></td>
+                <td><form:input type = "password" path="password" id="password"/></td>
             </tr>
      
      
