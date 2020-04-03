@@ -1,6 +1,6 @@
 <%-- 
-    Document   : menuUtente
-    Created on : Apr 3, 2020, 12:07:16 PM
+    Document   : menuResp
+    Created on : Apr 3, 2020, 4:26:13 PM
     Author     : michele
 --%>
 
@@ -12,6 +12,6 @@
         <title>Menu</title>
     </head>
     <body>
-        <h1>Hello Utente</h1>
+        <h1>Hello Responsabile</h1>
     </body>
 </html>

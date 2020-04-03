@@ -166,9 +166,21 @@ public class AppController {
         model.addAttribute("user", u);
         List<Utente> users = utenteservice.findAllUtenti();
         for(Utente ui : users){
-            if(ui.getUsername().equals(u.getUsername()) && ui.getPassword().equals(u.getPassword())) return "menuUtente";
+            if(ui.getUsername().equals(u.getUsername()) && ui.getPassword().equals(u.getPassword())){
+                if(ui.getResponsabile() == 'N') return "redirect:/showmenuUtente";
+                else return "redirect:/showmenuResp";
+            }
         }
         return "redirect:/";
     }
     
+    @RequestMapping(value = {"/showmenuUtente"}, method = RequestMethod.GET)
+    public String showMenuUtente(ModelMap model) {
+        return "menuUtente";
+    }
+    
+    @RequestMapping(value = {"/showmenuResp"}, method = RequestMethod.GET)
+    public String showMenuResp(ModelMap model) {
+        return "menuResp";
+    }
 }
