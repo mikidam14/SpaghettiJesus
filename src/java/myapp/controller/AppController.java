@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @RequestMapping("/")
 @ComponentScan("myapp.service")
 public class AppController {
- 
+    /*
     @Autowired
     EmployeeService service;
     
@@ -46,6 +46,7 @@ public class AppController {
     
     @Autowired
     EventService eservice;
+    */
     
     @Autowired
     SettoreService settoreservice;
@@ -165,7 +166,7 @@ public class AppController {
         model.addAttribute("user", u);
         List<Utente> users = utenteservice.findAllUtenti();
         for(Utente ui : users){
-            if(ui.getUsername().equals(u.getUsername()) && ui.getPassword().equals(u.getPassword())) return "redirect:/menuUtente";
+            if(ui.getUsername().equals(u.getUsername()) && ui.getPassword().equals(u.getPassword())) return "menuUtente";
         }
         return "redirect:/";
     }

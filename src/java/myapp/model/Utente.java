@@ -45,7 +45,7 @@ public class Utente implements Serializable{
     @Column(name = "Responsabile")
     private char responsabile;
     
-    @JoinColumn(name = "Settore", referencedColumnName = "IdStr")
+    @JoinColumn(name = "SETTORE", referencedColumnName = "IdStr")
     @ManyToOne(optional = false)
     private Settore settore;
 

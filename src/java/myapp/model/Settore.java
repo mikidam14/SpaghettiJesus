@@ -34,13 +34,13 @@ public class Settore implements Serializable{
     private String nome;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy="settore")
-    private List<Event> utenti;
+    private List<Utente> utenti;
 
-    public List<Event> getUtenti() {
+    public List<Utente> getUtenti() {
         return utenti;
     }
 
-    public void setUtenti(List<Event> utenti) {
+    public void setUtenti(List<Utente> utenti) {
         this.utenti = utenti;
     }
 
