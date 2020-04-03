@@ -163,7 +163,7 @@ public class AppController {
     
     @RequestMapping(value = {"/checkLogin"}, method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("utente") Utente u, ModelMap model){
-        model.addAttribute("user", u);
+        model.addAttribute("loggeduser", u);
         List<Utente> users = utenteservice.findAllUtenti();
         for(Utente ui : users){
             if(ui.getUsername().equals(u.getUsername()) && ui.getPassword().equals(u.getPassword())){
@@ -182,5 +182,10 @@ public class AppController {
     @RequestMapping(value = {"/showmenuResp"}, method = RequestMethod.GET)
     public String showMenuResp(ModelMap model) {
         return "menuResp";
+    }
+    
+    @RequestMapping(value = {"/apriSegnalazione"}, method = RequestMethod.GET)
+    public String apriSegnalazione(ModelMap model){
+        return "seganalzione";
     }
 }

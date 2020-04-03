@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -35,6 +36,9 @@ public class Settore implements Serializable{
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy="settore")
     private List<Utente> utenti;
+    
+    @OneToOne(mappedBy = "settore")
+    private Segnalazione segnalazione;
 
     public List<Utente> getUtenti() {
         return utenti;

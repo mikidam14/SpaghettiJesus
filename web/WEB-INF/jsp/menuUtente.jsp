@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +14,10 @@
         <title>Menu</title>
     </head>
     <body>
-        <h1>Hello Utente</h1>
+        <h2>Benvenuto.</h2>
+        <form:form method="get" action="apriSegnalazione">
+            <button type="submit">Apri Segnalazione</button>
+        </form:form>
+        
     </body>
 </html>

@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -48,6 +49,9 @@ public class Utente implements Serializable{
     @JoinColumn(name = "SETTORE", referencedColumnName = "IdStr")
     @ManyToOne(optional = false)
     private Settore settore;
+    
+    @OneToOne(mappedBy = "utente")
+    private Segnalazione segnalazione;
 
     public String getUsername() {
         return username;
