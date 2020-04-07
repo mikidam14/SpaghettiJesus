@@ -6,6 +6,8 @@
 
 package myapp.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import myapp.model.Category;
  
@@ -29,7 +31,10 @@ import myapp.service.FollowerService;
 import myapp.service.SegnalazioneService;
 import myapp.service.SettoreService;
 import myapp.service.UtenteService;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
  
 @Controller
@@ -158,7 +163,13 @@ public class AppController {
     }
     */
     
-    
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        sdf.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+    }   
+
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String index(ModelMap model) {
         model.addAttribute("utente", new Utente());
@@ -169,7 +180,6 @@ public class AppController {
     @RequestMapping(value = {"/checkLogin"}, method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("utente") Utente u, ModelMap model){
         model.addAttribute("loggeduser", u);
-        model.addAttribute("loggedusername", u.getUsername());
         List<Utente> users = utenteservice.findAllUtenti();
         for(Utente ui : users){
             if(ui.getUsername().equals(u.getUsername()) && ui.getPassword().equals(u.getPassword())){
@@ -181,7 +191,7 @@ public class AppController {
     }
     
     @RequestMapping(value = {"/showmenuUtente"}, method = RequestMethod.GET)
-    public String showMenuUtente(ModelMap model) {
+    public String showMenuUtente(ModelMap mode) {
         return "menuUtente";
     }
     
@@ -194,5 +204,14 @@ public class AppController {
     public String apriSegnalazione(ModelMap model){
         model.addAttribute("segnalazione", new Segnalazione());
         return "segnalazione";
+    }
+    
+    @RequestMapping(value= {"/saveSegnalazione"}, method = RequestMethod.POST)
+    public String apriSegnalazione(@ModelAttribute("segnalazione") Segnalazione s, ModelMap model){
+		
+	if(s.getId() == 0) this.segnalazioneservice.saveSegnalazione(s);
+        else this.segnalazioneservice.saveSegnalazione(s);
+	return "showmenuUtente";
+		
     }
 }

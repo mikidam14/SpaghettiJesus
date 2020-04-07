@@ -16,7 +16,7 @@
     <body>
         <h2>Compila il form per aprire una segnalazione.</h2>
         
-        <form:form method="POST" modelAttribute="segnalazione">
+        <form:form action="/saveSegnalazione" method="POST" modelAttribute="segnalazione">
             <form:input type="hidden" path="id" id="id"/>
             <table>
                 <tr>
@@ -27,7 +27,7 @@
 
                 <tr>
                     <td><label for="descrizione">Descrizione: </label> </td>
-                    <td><form:input type="text" path="descrizione" id="descrizione"/></td>
+                    <td><form:input path="descrizione" id="descrizione"/></td>
                 </tr>
 
                 <tr>
@@ -41,6 +41,13 @@
                     <td><form:input type="text" value="${loggedusername}" path="utente" id="utente"/></td>
                 </tr>
 
+                
+                <tr>
+                    <td><label for="settore">Settore: </label> </td>
+                    <td><form:input type="text" path="settore" id="settore"/></td>
+                </tr>
+                
+                
                 <tr>
                     <td colspan="2">
                                 <input type="submit" value="Conferma"/>
