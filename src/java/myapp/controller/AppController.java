@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import myapp.model.Employee;
 import myapp.model.Event;
 import myapp.model.Follower;
+import myapp.model.Segnalazione;
 import myapp.model.Utente;
 import myapp.service.CategoryService;
 import myapp.service.EmployeeService;
 import myapp.service.EventService;
 import myapp.service.FollowerService;
+import myapp.service.SegnalazioneService;
 import myapp.service.SettoreService;
 import myapp.service.UtenteService;
 import org.springframework.context.annotation.ComponentScan;
@@ -53,6 +55,9 @@ public class AppController {
     
     @Autowired
     UtenteService utenteservice;
+    
+    @Autowired
+    SegnalazioneService segnalazioneservice;
     
     /*
      * This method will list all existing employees.
@@ -164,6 +169,7 @@ public class AppController {
     @RequestMapping(value = {"/checkLogin"}, method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("utente") Utente u, ModelMap model){
         model.addAttribute("loggeduser", u);
+        model.addAttribute("loggedusername", u.getUsername());
         List<Utente> users = utenteservice.findAllUtenti();
         for(Utente ui : users){
             if(ui.getUsername().equals(u.getUsername()) && ui.getPassword().equals(u.getPassword())){
@@ -186,6 +192,7 @@ public class AppController {
     
     @RequestMapping(value = {"/apriSegnalazione"}, method = RequestMethod.GET)
     public String apriSegnalazione(ModelMap model){
-        return "seganalzione";
+        model.addAttribute("segnalazione", new Segnalazione());
+        return "segnalazione";
     }
 }

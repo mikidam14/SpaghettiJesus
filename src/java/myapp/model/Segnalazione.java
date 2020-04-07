@@ -47,4 +47,52 @@ public class Segnalazione implements Serializable{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "SETTORE", referencedColumnName = "IdStr")
     private Settore settore;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public String getProdotto() {
+        return prodotto;
+    }
+
+    public void setProdotto(String prodotto) {
+        this.prodotto = prodotto;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public Settore getSettore() {
+        return settore;
+    }
+
+    public void setSettore(Settore settore) {
+        this.settore = settore;
+    }
 }
