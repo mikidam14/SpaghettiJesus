@@ -206,7 +206,7 @@ public class AppController {
         return "segnalazione";
     }
     
-    @RequestMapping(value= {"/saveSegnalazione"}, method = RequestMethod.POST)
+    @RequestMapping(value= {"/apriSegnalazione"}, method = RequestMethod.POST)
     public String apriSegnalazione(@ModelAttribute("segnalazione") Segnalazione s, ModelMap model){
 		
 	if(s.getId() == 0) this.segnalazioneservice.saveSegnalazione(s);
