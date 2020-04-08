@@ -16,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -32,6 +34,7 @@ public class Segnalazione implements Serializable{
     private int id;
     
     @Column(name = "Data")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date data;
     
     @Column(name = "Descrizione")
