@@ -40,8 +40,24 @@ public class Settore implements Serializable{
     @OneToMany(cascade = CascadeType.ALL, mappedBy="settore")
     private List<Team> team;
     
-    @OneToOne(mappedBy = "settore")
-    private Segnalazione segnalazione;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "settore")
+    private List<Team> segnalazioni;
+
+    public List<Team> getTeam() {
+        return team;
+    }
+
+    public void setTeam(List<Team> team) {
+        this.team = team;
+    }
+
+    public List<Team> getSegnalazioni() {
+        return segnalazioni;
+    }
+
+    public void setSegnalazioni(List<Team> segnalazioni) {
+        this.segnalazioni = segnalazioni;
+    }
 
     public List<Utente> getUtenti() {
         return utenti;

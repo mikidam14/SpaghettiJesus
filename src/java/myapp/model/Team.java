@@ -33,6 +33,30 @@ public class Team implements Serializable{
     @JoinColumn(name = "SETTORE", referencedColumnName = "IdStr")
     @ManyToOne(optional = false)
     private String settore;  
+
+    public String getIdTeam() {
+        return idTeam;
+    }
+
+    public void setIdTeam(String idTeam) {
+        this.idTeam = idTeam;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSettore() {
+        return settore;
+    }
+
+    public void setSettore(String settore) {
+        this.settore = settore;
+    }
     
    
 }
