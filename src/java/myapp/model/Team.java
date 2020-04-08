@@ -25,7 +25,7 @@ public class Team implements Serializable{
     
     @Id 
     @Column(name = "IdTeam")
-    private String idTeam;
+    private int idTeam;
 	
     @Column(name = "Nome")
     private String nome;
@@ -34,11 +34,11 @@ public class Team implements Serializable{
     @ManyToOne(optional = false)
     private Settore settore;  
 
-    public String getIdTeam() {
+    public int getIdTeam() {
         return idTeam;
     }
 
-    public void setIdTeam(String idTeam) {
+    public void setIdTeam(int idTeam) {
         this.idTeam = idTeam;
     }
 
