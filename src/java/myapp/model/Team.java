@@ -32,7 +32,7 @@ public class Team implements Serializable{
 
     @JoinColumn(name = "SETTORE", referencedColumnName = "IdStr")
     @ManyToOne(optional = false)
-    private String settore;  
+    private Settore settore;  
 
     public String getIdTeam() {
         return idTeam;
@@ -50,11 +50,11 @@ public class Team implements Serializable{
         this.nome = nome;
     }
 
-    public String getSettore() {
+    public Settore getSettore() {
         return settore;
     }
 
-    public void setSettore(String settore) {
+    public void setSettore(Settore settore) {
         this.settore = settore;
     }
     
