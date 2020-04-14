@@ -9,6 +9,7 @@ package myapp.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import myapp.model.AzioneCorrettiva;
 import myapp.model.Category;
  
  
@@ -229,6 +230,7 @@ public class AppController {
     @RequestMapping(value = {"/apriAzioneCorrettiva"}, method = RequestMethod.GET)
     public String apriAzioneCorrettiva(@PathVariable("id") int id, ModelMap model){
         this.segnalazioneservice.deleteSegnalazione(id);
+        model.addAttribute("azionecorrettiva", new AzioneCorrettiva());
         return "segnalazione";
     }
 }
