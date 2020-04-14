@@ -42,14 +42,6 @@ public class AzioneVerifica implements Serializable{
     @JoinColumn(name = "AZIONE_CORRETTIVA", referencedColumnName="IdCr")
     private AzioneCorrettiva azCr;
 
-    public AzioneCorrettiva getAzCr() {
-        return azCr;
-    }
-
-    public void setAzCr(AzioneCorrettiva azCr) {
-        this.azCr = azCr;
-    }
-    
     public int getId() {
         return id;
     }

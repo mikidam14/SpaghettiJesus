@@ -49,33 +49,6 @@ public class Utente implements Serializable{
     @OneToMany(cascade = CascadeType.ALL, mappedBy="utente")
     private List<Segnalazione> segnalazione;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="utente")
-    private List<AzioneCorrettiva> azioneCorrettiva;
-
-    public Settore getSettore() {
-        return settore;
-    }
-
-    public void setSettore(Settore settore) {
-        this.settore = settore;
-    }
-
-    public List<Segnalazione> getSegnalazione() {
-        return segnalazione;
-    }
-
-    public void setSegnalazione(List<Segnalazione> segnalazione) {
-        this.segnalazione = segnalazione;
-    }
-
-    public List<AzioneCorrettiva> getAzioneCorrettiva() {
-        return azioneCorrettiva;
-    }
-
-    public void setAzioneCorrettiva(List<AzioneCorrettiva> azioneCorrettiva) {
-        this.azioneCorrettiva = azioneCorrettiva;
-    }
-    
     public String getUsername() {
         return username;
     }

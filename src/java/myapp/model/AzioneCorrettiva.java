@@ -49,18 +49,6 @@ public class AzioneCorrettiva implements Serializable{
     @JoinColumn(name = "SEGNALAZIONE", referencedColumnName="IdSgn")
     private Segnalazione segnalazione;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "AZIONE_VERIFIA", referencedColumnName="IdVr")
-    private AzioneVerifica azioneVerfica;
-
-    public AzioneVerifica getAzioneVerfica() {
-        return azioneVerfica;
-    }
-
-    public void setAzioneVerfica(AzioneVerifica azioneVerfica) {
-        this.azioneVerfica = azioneVerfica;
-    }
-    
     public int getId() {
         return id;
     }
