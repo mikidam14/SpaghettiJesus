@@ -219,7 +219,7 @@ public class AppController {
 		
 	if(s.getId() == 0) this.segnalazioneservice.saveSegnalazione(s);
         else this.segnalazioneservice.saveSegnalazione(s);
-	return "showmenuUtente";
+	return "redirect:/showmenuUtente";
 		
     }
     
@@ -235,6 +235,13 @@ public class AppController {
         //this.segnalazioneservice.deleteSegnalazione(id);
         model.addAttribute("azionecorrettiva", new AzioneCorrettiva());
         return "azionecorrettiva";
+    }
+    
+    @RequestMapping(value = {"/apriAzioneCorrettiva"}, method = RequestMethod.POST)
+    public String apriAzioneCorrettiva(@ModelAttribute("azionecorrettiva") AzioneCorrettiva ac, ModelMap model){
+        if(ac.getId() == 0) this.azionecorrettivaservice.saveAzioneCorrettiva(ac);
+        else this.azionecorrettivaservice.saveAzioneCorrettiva(ac);
+        return "redirect:/showmenuUtente";
     }
     
     @RequestMapping(value = {"/apriAzioneVerifica/{id}"}, method = RequestMethod.GET)
