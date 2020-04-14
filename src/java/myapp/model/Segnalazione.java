@@ -44,7 +44,7 @@ public class Segnalazione implements Serializable{
     @Column(name = "Prodotto")
     private String prodotto;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "UTENTE", referencedColumnName = "Username")
     private Utente utente;
     
