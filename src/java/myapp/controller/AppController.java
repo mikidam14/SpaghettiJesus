@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import myapp.model.AzioneCorrettiva;
-import myapp.model.Category;
  
  
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +19,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
  
-import myapp.model.Employee;
-import myapp.model.Event;
-import myapp.model.Follower;
 import myapp.model.Segnalazione;
 import myapp.model.Utente;
 import myapp.service.AzioneCorrettivaService;
-import myapp.service.CategoryService;
-import myapp.service.EmployeeService;
-import myapp.service.EventService;
-import myapp.service.FollowerService;
 import myapp.service.SegnalazioneService;
 import myapp.service.SettoreService;
 import myapp.service.UtenteService;
