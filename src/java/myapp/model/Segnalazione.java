@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 
 /**
  * 
- * @author marco
+ * @author michele
  */
 @Entity
 @Table(name="SEGNALAZIONE")
