@@ -225,14 +225,14 @@ public class AppController {
     
     @RequestMapping("/removeSe/{id}")
     public String rimuoviSegnalazione(@PathVariable("id") int id){
-	this.segnalazioneservice.deleteSegnalazione(id);
+	//this.segnalazioneservice.deleteSegnalazione(id);
         return "redirect:/showmenuResp";
     }
     
     
     @RequestMapping(value = {"/apriAzioneCorrettiva/{id}"}, method = RequestMethod.GET)
     public String apriAzioneCorrettiva(@PathVariable("id") int id, ModelMap model){
-        this.segnalazioneservice.deleteSegnalazione(id);
+        //this.segnalazioneservice.deleteSegnalazione(id);
         model.addAttribute("azionecorrettiva", new AzioneCorrettiva());
         return "azionecorrettiva";
     }
