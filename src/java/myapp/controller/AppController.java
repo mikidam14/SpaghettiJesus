@@ -204,6 +204,7 @@ public class AppController {
     @RequestMapping(value = {"/showmenuResp"}, method = RequestMethod.GET)
     public String showMenuResp(ModelMap model) {
         model.addAttribute("segnalazioni", segnalazioneservice.findAllSegnalazioni());
+        model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
         return "menuResp";
     }
     

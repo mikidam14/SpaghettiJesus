@@ -41,7 +41,28 @@
             </table>
         </c:if>
         
-        <h2>NON CONFORMITÀ</h2>
+        <h2>AZIONI CORRETTIVE</h2>
+       
+            <c:if test="${!empty azionicorrettive}">
+            <table>
+                <tr style="background-color: cornflowerblue">
+                    <th>Id</th>
+                    <th>Descrizione</th>
+                    <th>Data</th>
+                    <th>Team</th>
+                    <th>Segnalazione</th>
+                </tr>
+            <c:forEach items="${azionicorrettive}" var="ac">
+                <tr style="background-color: lightcyan">
+                    <td>${ac.id}</td>
+                    <td>${ac.descrizione}</td>
+                    <td>${ac.data}</td>
+                    <td>${ac.team.nome}</td>
+                    <td>${ac.segnalazione.id}</td>
+                </tr>
+            </c:forEach>
+            </table>
+        </c:if>
         
         <h2>AZIONI DI VERIFICA</h2>
     </body>
