@@ -42,5 +42,25 @@
             </c:forEach>
             </table>
         </c:if>
+        
+        <h2>AZIONI DI VERIFICA</h2>
+        <c:if test="${!empty azioniverifica}">
+            <table>
+                <tr style="background-color: cornflowerblue">
+                    <th>Id</th>
+                    <th>Descrizione</th>
+                    <th>Utente</th>
+                    <th>AzCr</th>
+                </tr>
+            <c:forEach items="${azioniverifica}" var="av">
+                <tr style="background-color: lightcyan">
+                    <td>${av.id}</td>
+                    <td>${av.descrizione}</td>
+                    <td>${av.utente.username}</td>
+                    <td>${av.azionecorrettiva.id}</td>
+                </tr>
+            </c:forEach>
+            </table>
+        </c:if>
     </body>
 </html>
