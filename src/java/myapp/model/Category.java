@@ -1,8 +1,6 @@
 package myapp.model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
  

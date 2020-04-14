@@ -7,7 +7,6 @@ package myapp.dao;
 
 import java.util.List;
 import myapp.model.Segnalazione;
-import org.springframework.stereotype.Repository;
 
 /**
  *

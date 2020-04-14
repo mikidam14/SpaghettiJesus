@@ -9,8 +9,6 @@ package myapp.dao;
 import java.util.List;
  
 import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
  
 import myapp.model.Employee;
