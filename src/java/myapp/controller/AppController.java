@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import myapp.model.Segnalazione;
 import myapp.model.Utente;
 import myapp.service.AzioneCorrettivaService;
+import myapp.service.AzioneVerificaService;
 import myapp.service.SegnalazioneService;
 import myapp.service.SettoreService;
 import myapp.service.UtenteService;
@@ -60,6 +61,9 @@ public class AppController {
     
     @Autowired
     AzioneCorrettivaService azionecorrettivaservice;
+    
+    @Autowired
+    AzioneVerificaService azioneverificaservice;
     
     /*
      * This method will list all existing employees.
@@ -190,6 +194,7 @@ public class AppController {
     @RequestMapping(value = {"/showmenuUtente"}, method = RequestMethod.GET)
     public String showMenuUtente(ModelMap model) {
         model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
+        model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
         return "menuUtente";
     }
     
@@ -197,6 +202,7 @@ public class AppController {
     public String showMenuResp(ModelMap model) {
         model.addAttribute("segnalazioni", segnalazioneservice.findAllSegnalazioni());
         model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
+        model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
         return "menuResp";
     }
     
