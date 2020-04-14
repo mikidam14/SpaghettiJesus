@@ -30,12 +30,12 @@
      
             <tr>
                 <td><label for="password">Password: </label> </td>
-                <td><form:input type = "Pswd" path="password" id="password"/></td>
+                <td><form:input type = "password" path="password" id="password"/></td>
             </tr>
      
      
             <tr>
-                <td><button typer="submit">Login</button></td>
+                <td><button type="submit">Login</button></td>
             </tr>
         </table>
     </form:form>
