@@ -228,10 +228,18 @@ public class AppController {
         return "redirect:/showmenuResp";
     }
     
-    @RequestMapping(value = {"/apriAzioneCorrettiva"}, method = RequestMethod.GET)
+    
+    @RequestMapping(value = {"/apriAzioneCorrettiva/{id}"}, method = RequestMethod.GET)
     public String apriAzioneCorrettiva(@PathVariable("id") int id, ModelMap model){
-        this.segnalazioneservice.deleteSegnalazione(id);
+        //this.segnalazioneservice.deleteSegnalazione(id); STO FACENDO TEST
         model.addAttribute("azionecorrettiva", new AzioneCorrettiva());
+        return "azionecorrettiva";
+    }
+    
+    @RequestMapping(value = {"/apriAzioneVerifica/{id}"}, method = RequestMethod.GET)
+    public String apriAzioneVerifica(@PathVariable("id") int id, ModelMap model){
+        this.azionecorrettivaservice.deleteAzioneCorrettiva(id);
+        //model.addAttribute("azioneverifica", new AzioneVerifica()); QUESTO BISOGNA ANCORA FARLO
         return "segnalazione";
     }
 }

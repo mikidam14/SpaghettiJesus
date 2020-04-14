@@ -37,6 +37,7 @@
                     <td>${ac.data}</td>
                     <td>${ac.team.nome}</td>
                     <td>${ac.segnalazione.id}</td>
+                    <td><a href="<c:url value='/apriAzioneVerifica/${ac.id}' />" >Assegna azione di verifica.</a></td>
                 </tr>
             </c:forEach>
             </table>
