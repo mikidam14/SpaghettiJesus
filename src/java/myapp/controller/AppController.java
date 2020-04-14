@@ -194,7 +194,7 @@ public class AppController {
     @RequestMapping(value = {"/showmenuUtente"}, method = RequestMethod.GET)
     public String showMenuUtente(ModelMap model) {
         model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
-        //model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
+        model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
         return "menuUtente";
     }
     
