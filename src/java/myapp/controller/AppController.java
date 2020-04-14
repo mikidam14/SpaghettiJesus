@@ -215,4 +215,10 @@ public class AppController {
 	return "showmenuUtente";
 		
     }
+    
+    @RequestMapping("/removeSe/{id}")
+    public String rimuoviSegnalazione(@PathVariable("id") int id){
+	this.segnalazioneservice.deleteSegnalazione(id);
+        return "redirect:/showmenuResp";
+    }
 }

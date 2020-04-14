@@ -34,6 +34,7 @@
                     <td>${se.prodotto}</td>
                     <td>${se.utente.username}</td>
                     <td>${se.settore.nome}</td>
+                    <td><a href="<c:url value='/removeSe/${se.id}' />" >Chiudi segnalazione.</a></td>
                 </tr>
             </c:forEach>
             </table>
