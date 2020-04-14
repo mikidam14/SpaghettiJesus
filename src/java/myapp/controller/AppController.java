@@ -24,6 +24,7 @@ import myapp.model.Event;
 import myapp.model.Follower;
 import myapp.model.Segnalazione;
 import myapp.model.Utente;
+import myapp.service.AzioneCorrettivaService;
 import myapp.service.CategoryService;
 import myapp.service.EmployeeService;
 import myapp.service.EventService;
@@ -63,6 +64,9 @@ public class AppController {
     
     @Autowired
     SegnalazioneService segnalazioneservice;
+    
+    @Autowired
+    AzioneCorrettivaService azionecorrettivaservice;
     
     /*
      * This method will list all existing employees.
@@ -220,5 +224,11 @@ public class AppController {
     public String rimuoviSegnalazione(@PathVariable("id") int id){
 	this.segnalazioneservice.deleteSegnalazione(id);
         return "redirect:/showmenuResp";
+    }
+    
+    @RequestMapping(value = {"/apriAzioneCorrettiva"}, method = RequestMethod.GET)
+    public String apriAzioneCorrettiva(@PathVariable("id") int id, ModelMap model){
+        this.segnalazioneservice.deleteSegnalazione(id);
+        return "segnalazione";
     }
 }

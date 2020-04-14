@@ -6,11 +6,14 @@
 package myapp.model;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +37,9 @@ public class Team implements Serializable{
     @ManyToOne(optional = false)
     private Settore settore;  
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
+    private List<AzioneCorrettiva> azionicorrettive;
+    
     public int getIdTeam() {
         return idTeam;
     }
@@ -57,6 +63,12 @@ public class Team implements Serializable{
     public void setSettore(Settore settore) {
         this.settore = settore;
     }
-    
-   
+
+    public List<AzioneCorrettiva> getAzionicorrettive() {
+        return azionicorrettive;
+    }
+
+    public void setAzionicorrettive(List<AzioneCorrettiva> azionicorrettive) {
+        this.azionicorrettive = azionicorrettive;
+    }
 }

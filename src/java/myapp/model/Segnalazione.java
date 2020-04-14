@@ -51,6 +51,9 @@ public class Segnalazione implements Serializable{
     @JoinColumn(name = "SETTORE", referencedColumnName = "IdStr")
     @ManyToOne(optional = false)
     private Settore settore;
+    
+    @OneToOne(mappedBy = "segnalazione")
+    private AzioneCorrettiva azionecorrettiva;
 
     public int getId() {
         return id;
@@ -98,5 +101,13 @@ public class Segnalazione implements Serializable{
 
     public void setSettore(Settore settore) {
         this.settore = settore;
+    }
+
+    public AzioneCorrettiva getAzionecorrettiva() {
+        return azionecorrettiva;
+    }
+
+    public void setAzionecorrettiva(AzioneCorrettiva azionecorrettiva) {
+        this.azionecorrettiva = azionecorrettiva;
     }
 }

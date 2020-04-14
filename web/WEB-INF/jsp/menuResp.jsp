@@ -35,6 +35,7 @@
                     <td>${se.utente.username}</td>
                     <td>${se.settore.nome}</td>
                     <td><a href="<c:url value='/removeSe/${se.id}' />" >Chiudi segnalazione.</a></td>
+                    <td><a href="<c:url value='/apriAzioneCorrettiva/${se.id}' />" >Assegna azione correttiva.</a></td>
                 </tr>
             </c:forEach>
             </table>
