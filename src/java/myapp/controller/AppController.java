@@ -196,7 +196,8 @@ public class AppController {
     }
     
     @RequestMapping(value = {"/showmenuUtente"}, method = RequestMethod.GET)
-    public String showMenuUtente(ModelMap mode) {
+    public String showMenuUtente(ModelMap model) {
+        model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
         return "menuUtente";
     }
     
