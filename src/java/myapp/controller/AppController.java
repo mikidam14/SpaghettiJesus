@@ -246,6 +246,7 @@ public class AppController {
     public String apriAzioneCorrettiva(@PathVariable("id") int id, ModelMap model){
         //this.segnalazioneservice.deleteSegnalazione(id);
         model.addAttribute("azionecorrettiva", new AzioneCorrettiva());
+        model.addAttribute("segnalazione", id);
         return "azionecorrettiva";
     }
     

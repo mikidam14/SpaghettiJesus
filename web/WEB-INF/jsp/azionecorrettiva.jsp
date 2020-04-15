@@ -37,7 +37,7 @@
 
                 <tr>
                     <td><label for="segnalazione">Segnalazione: </label> </td>
-                    <td><form:input path="segnalazione" id="segnalazione"/></td>
+                    <td><form:input value="${segnalazione}" path="segnalazione" id="segnalazione"/></td>
                 </tr>
                 
                 <tr>
