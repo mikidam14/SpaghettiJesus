@@ -10,8 +10,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -48,10 +51,24 @@ public class Utente implements Serializable{
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy="utente")
     private List<Segnalazione> segnalazioni;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="utente")
+    /*
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="utente")
     private List<AzioneVerifica> azioniverifica;
+    */
+    
+    /*
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="UT_TM", joinColumns={@JoinColumn(referencedColumnName="Username")}, inverseJoinColumns={@JoinColumn(referencedColumnName="IdTeam")})
+    private List<Team> team;
 
+    public List<Team> getTeam() {
+        return team;
+    }
+
+    public void setTeam(List<Team> team) {
+        this.team = team;
+    }*/
+    
     public Settore getSettore() {
         return settore;
     }
@@ -67,7 +84,7 @@ public class Utente implements Serializable{
     public void setSegnalazioni(List<Segnalazione> segnalazioni) {
         this.segnalazioni = segnalazioni;
     }
-
+/*
     public List<AzioneVerifica> getAzioniverifica() {
         return azioniverifica;
     }
@@ -75,7 +92,7 @@ public class Utente implements Serializable{
     public void setAzioniverifica(List<AzioneVerifica> azioniverifica) {
         this.azioniverifica = azioniverifica;
     }
-    
+ */   
     public String getUsername() {
         return username;
     }

@@ -10,8 +10,10 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -39,6 +41,19 @@ public class Team implements Serializable{
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
     private List<AzioneCorrettiva> azionicorrettive;
+    
+    /*
+    @ManyToMany(mappedBy="team")
+    private List<Utente> utenti;
+    
+    public List<Utente> getUtenti() {
+        return utenti;
+    }
+
+    public void setUtenti(List<Utente> utenti) {
+        this.utenti = utenti;
+    }*/
+    
     
     public int getIdTeam() {
         return idTeam;

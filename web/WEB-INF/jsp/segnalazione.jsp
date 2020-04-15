@@ -16,7 +16,7 @@
     <body>
         <h2>Compila il form per aprire una segnalazione.</h2>
         
-        <form:form method="POST" modelAttribute="segnalazione">
+        <form:form method="POST" modelAttribute="segnalazione" action="apriSegnalazione2">
             <form:input type="hidden" path="id" id="id"/>
             <table>
                 <tr>
@@ -38,13 +38,13 @@
 
                 <tr>
                     <td><label for="utente">Utente: </label> </td>
-                    <td><form:input type="text" value="${loggedusername}" path="utente" id="utente"/></td>
+                    <td><form:input type="text" value="${username}" path="utente" id="utente"/></td>
                 </tr>
 
                 
                 <tr>
                     <td><label for="settore">Settore: </label> </td>
-                    <td><form:input type="text" path="settore" id="settore"/></td>
+                    <td><form:input type="text" value="${settore}" path="settore" id="settore"/></td>
                 </tr>
                 
                 

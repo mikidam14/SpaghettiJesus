@@ -7,6 +7,7 @@
 package myapp.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import myapp.model.AzioneCorrettiva;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
  
 import myapp.model.Segnalazione;
+import myapp.model.Team;
 import myapp.model.Utente;
 import myapp.service.AzioneCorrettivaService;
 import myapp.service.AzioneVerificaService;
@@ -195,8 +197,16 @@ public class AppController {
     
     @RequestMapping(value = {"/showmenuUtente"}, method = RequestMethod.GET)
     public String showMenuUtente(ModelMap model) {
-        model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
+        /*List<AzioneCorrettiva> ac = azionecorrettivaservice.findAllAzioniCorrettive();
+        ArrayList<AzioneCorrettiva> acu = new ArrayList<AzioneCorrettiva>();
+        List<Team> lt = loggeduser.getTeam();
+        for(AzioneCorrettiva a: ac){
+            for(Team t : lt){
+                if(t.getNome().equals(a.getTeam().getNome())) acu.add(a);
+            }
+        }*/
         //model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
+        model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
         return "menuUtente";
     }
     
@@ -211,10 +221,12 @@ public class AppController {
     @RequestMapping(value = {"/apriSegnalazione"}, method = RequestMethod.GET)
     public String apriSegnalazione(ModelMap model){
         model.addAttribute("segnalazione", new Segnalazione());
+        model.addAttribute("username", loggeduser.getUsername());
+        model.addAttribute("settore", loggeduser.getSettore().getId());
         return "segnalazione";
     }
     
-    @RequestMapping(value= {"/apriSegnalazione"}, method = RequestMethod.POST)
+    @RequestMapping(value= {"/apriSegnalazione2"}, method = RequestMethod.POST)
     public String apriSegnalazione(@ModelAttribute("segnalazione") Segnalazione s, ModelMap model){
 		
 	if(s.getId() == 0) this.segnalazioneservice.saveSegnalazione(s);
