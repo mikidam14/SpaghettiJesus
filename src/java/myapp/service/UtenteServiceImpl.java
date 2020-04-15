@@ -23,7 +23,7 @@ public class UtenteServiceImpl implements UtenteService{
     private UtenteDao dao;
     
     @Override
-    public Utente findById(int id) {
+    public Utente findById(String id) {
         return dao.findById(id);
     }
 

@@ -65,6 +65,7 @@ public class AppController {
     @Autowired
     AzioneVerificaService azioneverificaservice;
     
+    Utente loggeduser = null;
     /*
      * This method will list all existing employees.
      */
@@ -175,12 +176,13 @@ public class AppController {
     public String index(ModelMap model) {
         model.addAttribute("utente", new Utente());
         model.addAttribute("settori", settoreservice.findAllSettori());
+        loggeduser = null;
         return "login";
     }
     
     @RequestMapping(value = {"/checkLogin"}, method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("utente") Utente u, ModelMap model){
-        model.addAttribute("loggeduser", u);
+        loggeduser = utenteservice.findById(u.getUsername());
         List<Utente> users = utenteservice.findAllUtenti();
         for(Utente ui : users){
             if(ui.getUsername().equals(u.getUsername()) && ui.getPassword().equals(u.getPassword())){
@@ -194,7 +196,7 @@ public class AppController {
     @RequestMapping(value = {"/showmenuUtente"}, method = RequestMethod.GET)
     public String showMenuUtente(ModelMap model) {
         model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
-        model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
+        //model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
         return "menuUtente";
     }
     

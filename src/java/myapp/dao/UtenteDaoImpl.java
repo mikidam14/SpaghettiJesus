@@ -27,7 +27,7 @@ public class UtenteDaoImpl implements UtenteDao{
     }
     
     @Override
-    public Utente findById(int id) {
+    public Utente findById(String id) {
         return (Utente) getSession().get(Utente.class, id);
     }
 

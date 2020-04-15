@@ -13,6 +13,6 @@ import myapp.model.Utente;
  * @author michele
  */
 public interface UtenteService{
-    Utente findById(int id);
+    Utente findById(String id);
     List<Utente> findAllUtenti();
 }
