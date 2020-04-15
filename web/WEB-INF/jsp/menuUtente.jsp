@@ -62,5 +62,9 @@
             </c:forEach>
             </table>
         </c:if>
+        
+        <form:form method="post" action="logout">
+            <button type="submit">Logout</button>
+        </form:form>
     </body>
 </html>

@@ -65,5 +65,9 @@
         </c:if>
         
         <h2>AZIONI DI VERIFICA</h2>
+        
+        <form:form method="post" action="logout">
+            <button type="submit">Logout</button>
+        </form:form>
     </body>
 </html>

@@ -250,4 +250,9 @@ public class AppController {
         //model.addAttribute("azioneverifica", new AzioneVerifica()); QUESTO BISOGNA ANCORA FARLO
         return "segnalazione";
     }
+    
+    @RequestMapping(value= {"/logout"}, method = RequestMethod.POST)
+    public String logout(){
+	return "redirect:/";
+    }
 }
