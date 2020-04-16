@@ -14,8 +14,8 @@
         <title>Segnalazione</title>
     </head>
     <body>
-        <h2>Compila il form per aprire una segnalazione.</h2>
-        
+        <div><h2>Compila il form per aprire una segnalazione.</h2></div>
+        <div>
         <form:form method="POST" modelAttribute="segnalazione">
             <form:input type="hidden" path="id" id="id"/>
             <table>
@@ -55,5 +55,12 @@
                 </tr>
             </table>
         </form:form>
+        </div>
+        <div>
+            <br/>
+            <form:form method="post" action="backtout">
+                    <button type="submit">Cancella</button>
+            </form:form>
+        </div>
     </body>
 </html>

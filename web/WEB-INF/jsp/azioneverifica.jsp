@@ -1,6 +1,6 @@
 <%-- 
-    Document   : azionecorrettiva
-    Created on : Apr 14, 2020, 12:26:36 PM
+    Document   : azioneverifica
+    Created on : Apr 16, 2020, 8:03:10 PM
     Author     : michele
 --%>
 
@@ -11,12 +11,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Azione Correttiva</title>
+        <title>Azione Di Verifica</title>
     </head>
     <body>
-        <div><h2>Compila il form per creare un'azione correttiva.</h2></div>
+        <div><h2>Compila il form per creare un'azione di verifica.</h2></div>
         <div>
-            <form:form method="POST" modelAttribute="azionecorrettiva">
+            <form:form method="POST" modelAttribute="azioneverifica">
                 <form:input type="hidden" path="id" id="id"/>
                 <table>
                     <tr>
@@ -25,19 +25,13 @@
                     </tr>
 
                     <tr>
-                        <td><label for="data">Data: </label> </td>
-                        <td><form:input type="date" path="data" id="data"/></td>
+                        <td><label for="utente">Utente: </label> </td>
+                        <td><form:input path="utente" id="utente"/></td>
                     </tr>
 
                     <tr>
-                        <td><label for="team">Team: </label> </td>
-                        <td><form:input path="team" id="team"/></td>
-                    </tr>
-
-
-                    <tr>
-                        <td><label for="segnalazione">Segnalazione: </label> </td>
-                        <td><form:input value="${segnalazione}" path="segnalazione" id="segnalazione"/></td>
+                        <td><label for="azcr">Azione Correttiva: </label> </td>
+                        <td><form:input value="${azionecorrettiva}" path="azCr" id="azcr"/></td>
                     </tr>
 
                     <tr>
