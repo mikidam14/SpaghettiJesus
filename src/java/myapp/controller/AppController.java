@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import myapp.model.AzioneCorrettiva;
+import myapp.model.AzioneVerifica;
  
  
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,8 @@ public class AppController {
     AzioneVerificaService azioneverificaservice;
     
     Utente loggeduser = null;
+    int global_id;
+    
     /*
      * This method will list all existing employees.
      */
@@ -240,24 +243,10 @@ public class AppController {
 		
     }
     
-    //QUESTO METODO SERVE PER RIMUOVERE UNA SEGNALAZIONE
-    @RequestMapping("/removeSe/{id}")
-    public String rimuoviSegnalazione(@PathVariable("id") int id){
-	//this.segnalazioneservice.deleteSegnalazione(id);
-        return "redirect:/showmenuResp";
-    }
-    
-    //QUESTO METODO SERVE PER RIMUOVERE UN'AZIONE DI VERIFICA
-    @RequestMapping("/removeAV/{id}")
-    public String rimuoviAzioneVerifica(@PathVariable("id") int id){
-	//this.azioneverificaservice.deleteAzioneVerifica(id);
-        return "redirect:/showmenuResp";
-    }
-    
     //QUESTO METODO SERVE PER APRIRE IL FORM PER SALVARE UN'AZIONE CORRETTIVA
     @RequestMapping(value = {"/apriAzioneCorrettiva/{id}"}, method = RequestMethod.GET)
     public String apriAzioneCorrettiva(@PathVariable("id") int id, ModelMap model){
-        //this.segnalazioneservice.deleteSegnalazione(id);
+        global_id = id;
         model.addAttribute("azionecorrettiva", new AzioneCorrettiva());
         model.addAttribute("segnalazione", id);
         return "azionecorrettiva";
@@ -266,6 +255,7 @@ public class AppController {
     //QUESTO METODO SERVE PER SALVARE L'AZIONE CORRETTIVA
     @RequestMapping(value = {"/apriAzioneCorrettiva"}, method = RequestMethod.POST)
     public String apriAzioneCorrettiva(@ModelAttribute("azionecorrettiva") AzioneCorrettiva ac, ModelMap model){
+        //this.segnalazioneservice.deleteSegnalazione(global_id);
         this.azionecorrettivaservice.saveAzioneCorrettiva(ac);
         return "redirect:/showmenuUtente";
     }
@@ -273,12 +263,19 @@ public class AppController {
     //QUESTO METODO SERVE PER APRIRE IL FORM PER SALVARE UN'AZIONE DI VERIFICA
     @RequestMapping(value = {"/apriAzioneVerifica/{id}"}, method = RequestMethod.GET)
     public String apriAzioneVerifica(@PathVariable("id") int id, ModelMap model){
-        //this.azionecorrettivaservice.deleteAzioneCorrettiva(id);
-        //model.addAttribute("azioneverifica", new AzioneVerifica()); QUESTO BISOGNA ANCORA FARLO
-        return "segnalazione";
+        //global_id = id;
+        //model.addAttribute("azioneverifica", new AzioneVerifica()); 
+        //model.addAttribute("azionecorrettiva", id);
+        return "azioneverificafk";
     }
     
     //QUESTO METODO SERVER PER SALVARE IL FORM CON L'AZIONE DI VERIFICA
+    @RequestMapping(value = {"/apriAzioneVerifica"}, method = RequestMethod.GET)
+    public String apriAzioneVerifica(@ModelAttribute("azioneverifica") AzioneVerifica av, ModelMap model){
+        //this.azionecorrettivaservice.deleteAzioneCorrettiva(global_id);
+        //this.azioneverificaservice.saveAzioneVerifica(av);
+        return "azioneverificafk";
+    }
     
     //QUESTO METODO SERVE PER FARE IL LOGOUT
     @RequestMapping(value= {"/logout"}, method = RequestMethod.POST)
@@ -302,9 +299,11 @@ public class AppController {
     
     @RequestMapping(value = {"/mostraAV"}, method = RequestMethod.POST)
     public String mostraAV(ModelMap model){
-        model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
+        /*model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
         if('N' == loggeduser.getResponsabile()) return "azioniverificapage";
-        else return "azioniverificapageresp";
+        else return "azioniverificapageresp";*/
+        if('N' == loggeduser.getResponsabile()) return "azioniverificapagefk";
+        else return "azioniverificapagerespfk";
     }
     
     //QUESTO METODO SERVE PER TORNARE AL MENU DA UNA DELLE PAGINE PRECEDENTI
@@ -312,5 +311,37 @@ public class AppController {
     public String backtout(ModelMap model){
 	if('N' == loggeduser.getResponsabile()) return "redirect:/showmenuUtente"; 
         else return "redirect:/showmenuResp";
+    }
+    
+    //QUESTO METODO SERVE PER RIMUOVERE UNA SEGNALAZIONE
+    @RequestMapping("/removeSe/{id}")
+    public String rimuoviSegnalazione(@PathVariable("id") int id){
+        //global_id = id;
+        //this.segnalazioneservice.deleteSegnalazione(id);
+        return "redirect:/showmenuResp";
+    }
+    
+    /*
+    QUESTI METODI DANNO DEI PROBLEMI QUINDI NON POSSIAMO USARLI
+    //QUESTO METODO APRE LA PAGINA DI CONFERMA DELLA RIMOZIONE
+    @RequestMapping("/confirm/{id}")
+    public String confirmremove(@PathVariable("id") int id, ModelMap model){
+        //global_id = id;
+        return "confirmremove";
+    }
+    
+    //QUESTO METODO SERVE PER RIMUOVERE UNA SEGNALAZIONE
+    @RequestMapping("/removeSe")
+    public String rimuoviSegnalazione(ModelMap model){
+        //this.segnalazioneservice.deleteSegnalazione(global_id);
+        if('N' == loggeduser.getResponsabile()) return "redirect:/showmenuUtente"; 
+        else return "redirect:/showmenuResp";
+    }*/
+    
+    //QUESTO METODO SERVE PER RIMUOVERE UN'AZIONE DI VERIFICA
+    @RequestMapping("/removeAV/{id}")
+    public String rimuoviAzioneVerifica(@PathVariable("id") int id){
+	//this.azioneverificaservice.deleteAzioneVerifica(id);
+        return "redirect:/showmenuResp";
     }
 }
