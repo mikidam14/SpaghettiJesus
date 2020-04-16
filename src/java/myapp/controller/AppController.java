@@ -39,19 +39,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @RequestMapping("/")
 @ComponentScan("myapp.service")
 public class AppController {
-    /*
-    @Autowired
-    EmployeeService service;
-    
-    @Autowired
-    FollowerService fservice;
-    
-    @Autowired
-    CategoryService cservice;
-    
-    @Autowired
-    EventService eservice;
-    */
     
     @Autowired
     SettoreService settoreservice;
@@ -71,104 +58,6 @@ public class AppController {
     Utente loggeduser = null;
     int global_id;
     
-    /*
-     * This method will list all existing employees.
-     */
-    /*
-    @RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
-    public String listEmployees(ModelMap model) {
- 
-        List<Employee> employees = service.findAllEmployees();
-        model.addAttribute("tutti", employees);
-        return "impiegatil";
-    }
- 
-    @RequestMapping(value = "/add" , method = RequestMethod.GET)
-    public String newEmployee(ModelMap model) {
-        Employee employee = new Employee();
-        model.addAttribute("employee", employee);
-        return "add";
-    }
-
-    
-    //For add and update person both
-    @RequestMapping(value= "/add", method = RequestMethod.POST)
-    public String addEmpl(@ModelAttribute("employee") Employee e){
-		
-	if(e.getId() == 0) this.service.saveEmployee(e);
-        else this.service.updateEmployee(e);
-        
-	return "redirect:/";
-		
-    }
-	
-    @RequestMapping("/remove/{id}")
-    public String removeEmpl(@PathVariable("id") int id){
-	this.service.deleteEmployee(id);
-        return "redirect:/";
-    }
- 
-    @RequestMapping("/edit/{id}")
-    public String editPerson(@PathVariable("id") int id, ModelMap model){
-        model.addAttribute("employee", this.service.findById(id));
-        return "edit";
-    }
-    
-    @RequestMapping("/increment/{id}")
-    public String incrementSalary(@PathVariable("id") int id, ModelMap model){
-        this.service.incrementSalary(id);
-        return "redirect:/";
-    }
-    
-    @RequestMapping("/incrementsalary")
-    public String incrementSalary2(ModelMap model){
-        this.service.incrementSalary();
-        return "redirect:/";
-    }*/
-    
-    
-    /*
-           ROBA VECCHIA; SERVE PER ESEMPIO!!! NON TOCCARE!!!
-
-    
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-    public String index(ModelMap model) {
-        model.addAttribute("follower", new Follower());
-        return "login2";
-    }
-    
-    @RequestMapping(value = {"/checkLogin"}, method = RequestMethod.POST)
-    public String checkLogin(@ModelAttribute("follower") Follower f, ModelMap model){
-        model.addAttribute("user", f);
-        List<Follower> followers = fservice.findAllFollowers();
-        for(Follower fi : followers){
-            if(fi.getUsername().equals(f.getUsername()) && fi.getPassword().equals(f.getPassword())) return "redirect:/showcategories";
-        }
-        return "redirect:/";
-    }
-    
-    @RequestMapping(value = {"/showcategories"}, method = RequestMethod.GET)
-    public String showCategories(ModelMap model) {
-        List<Category> categories = cservice.findAllCategories();
-        //List<Event> events = eservice.findAllEvents();
-        model.addAttribute("categories", categories);
-        //model.addAttribute("events", events);
-        return "categoriespage";
-    }
-    
-    @RequestMapping(value = {"/showevents/{id}"})
-    public String showEvents(@PathVariable("id") int id, ModelMap model){
-        List<Event> events = cservice.findById(id).getEvents();
-        model.addAttribute("events", events);
-        return "eventspage";
-    }
-    
-    @RequestMapping(value = {"/subscribe/{id}"})
-    public String subscribe(@PathVariable("id") int id, ModelMap model){
-        
-        return "redirect:/showcateogires";
-    }
-    */
     
     @InitBinder
     public void initBinder(WebDataBinder binder) {
