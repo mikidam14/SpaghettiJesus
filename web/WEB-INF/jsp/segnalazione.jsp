@@ -16,7 +16,7 @@
     <body>
         <h2>Compila il form per aprire una segnalazione.</h2>
         
-        <form:form method="POST" modelAttribute="segnalazione" action="apriSegnalazione2">
+        <form:form method="POST" modelAttribute="segnalazione">
             <form:input type="hidden" path="id" id="id"/>
             <table>
                 <tr>

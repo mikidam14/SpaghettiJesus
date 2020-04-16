@@ -12,32 +12,35 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <style>
+            #center{
+                display: flex; 
+                justify-content:center;
+            }
+        </style>
     </head>
     <body>
         <div align="center"><h2>Inserisci le credenziali per effettuare il login</h2></div>
-        
-        
-        <!--<p><label>Username: <input type="text" name="username"/></label></p>
-        <p><label>Password: <input type="password" name="password"/></label></p>-->
-        
-        <form:form action="checkLogin" method="POST" modelAttribute="utente">
-        <table>
-            <tr>
-                <td><label for="username">Username: </label> </td>
-                <td><form:input path="Username" id="username"/></td>
-            </tr>
-         
-     
-            <tr>
-                <td><label for="password">Password: </label> </td>
-                <td><form:input type = "password" path="password" id="password"/></td>
-            </tr>
-     
-     
-            <tr>
-                <td><button type="submit">Login</button></td>
-            </tr>
-        </table>
-    </form:form>
+        <div id="center">
+            <form:form action="checkLogin" method="POST" modelAttribute="utente">
+                <table>
+                    <tr>
+                        <td><label for="username">Username: </label> </td>
+                        <td><form:input path="Username" id="username"/></td>
+                    </tr>
+
+
+                    <tr>
+                        <td><label for="password">Password: </label> </td>
+                        <td><form:input type = "password" path="password" id="password"/></td>
+                    </tr>
+
+
+                    <tr>
+                        <td><button type="submit">Login</button></td>
+                    </tr>
+                </table>
+            </form:form>
+        </div>
     </body>
 </html>

@@ -182,6 +182,7 @@ public class AppController {
         return "login";
     }
     
+    //QUESTO METODO SERVE PER VERIFICARE SE IL LOGIN E' CORRETTO
     @RequestMapping(value = {"/checkLogin"}, method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("utente") Utente u, ModelMap model){
         loggeduser = utenteservice.findById(u.getUsername());
@@ -195,6 +196,7 @@ public class AppController {
         return "redirect:/";
     }
     
+    //QUESTO METODO SERVE PER FAR VEDERE IL MENU DELL'UTENTE
     @RequestMapping(value = {"/showmenuUtente"}, method = RequestMethod.GET)
     public String showMenuUtente(ModelMap model) {
         /*List<AzioneCorrettiva> ac = azionecorrettivaservice.findAllAzioniCorrettive();
@@ -206,18 +208,22 @@ public class AppController {
             }
         }*/
         //model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
+        model.addAttribute("loggedusername", loggeduser.getNome() + " " + loggeduser.getCognome());
         model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
         return "menuUtente";
     }
     
+    //QUESTO METODO SERVE PER FAR VEDERE IL MENU DEL RESPONSABILE
     @RequestMapping(value = {"/showmenuResp"}, method = RequestMethod.GET)
     public String showMenuResp(ModelMap model) {
+        model.addAttribute("loggedusername", loggeduser.getNome() + " " + loggeduser.getCognome());
         model.addAttribute("segnalazioni", segnalazioneservice.findAllSegnalazioni());
         model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
         //model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
         return "menuResp";
     }
     
+    //QUESTO METODO SERVE PER APRIRE IL FORM PER SALVARE UNA SEGNALAZIONE
     @RequestMapping(value = {"/apriSegnalazione"}, method = RequestMethod.GET)
     public String apriSegnalazione(ModelMap model){
         model.addAttribute("segnalazione", new Segnalazione());
@@ -226,22 +232,29 @@ public class AppController {
         return "segnalazione";
     }
     
-    @RequestMapping(value= {"/apriSegnalazione2"}, method = RequestMethod.POST)
+    //QUESTO METODO SERVE PER SALVARE LA SEGNALAZIONE
+    @RequestMapping(value= {"/apriSegnalazione"}, method = RequestMethod.POST)
     public String apriSegnalazione(@ModelAttribute("segnalazione") Segnalazione s, ModelMap model){
-		
-	if(s.getId() == 0) this.segnalazioneservice.saveSegnalazione(s);
-        else this.segnalazioneservice.saveSegnalazione(s);
+	this.segnalazioneservice.saveSegnalazione(s);
 	return "redirect:/showmenuUtente";
 		
     }
     
+    //QUESTO METODO SERVE PER RIMUOVERE UNA SEGNALAZIONE
     @RequestMapping("/removeSe/{id}")
     public String rimuoviSegnalazione(@PathVariable("id") int id){
 	//this.segnalazioneservice.deleteSegnalazione(id);
         return "redirect:/showmenuResp";
     }
     
+    //QUESTO METODO SERVE PER RIMUOVERE UN'AZIONE DI VERIFICA
+    @RequestMapping("/removeAV/{id}")
+    public String rimuoviAzioneVerifica(@PathVariable("id") int id){
+	//this.azioneverificaservice.deleteAzioneVerifica(id);
+        return "redirect:/showmenuResp";
+    }
     
+    //QUESTO METODO SERVE PER APRIRE IL FORM PER SALVARE UN'AZIONE CORRETTIVA
     @RequestMapping(value = {"/apriAzioneCorrettiva/{id}"}, method = RequestMethod.GET)
     public String apriAzioneCorrettiva(@PathVariable("id") int id, ModelMap model){
         //this.segnalazioneservice.deleteSegnalazione(id);
@@ -250,13 +263,14 @@ public class AppController {
         return "azionecorrettiva";
     }
     
+    //QUESTO METODO SERVE PER SALVARE L'AZIONE CORRETTIVA
     @RequestMapping(value = {"/apriAzioneCorrettiva"}, method = RequestMethod.POST)
     public String apriAzioneCorrettiva(@ModelAttribute("azionecorrettiva") AzioneCorrettiva ac, ModelMap model){
-        if(ac.getId() == 0) this.azionecorrettivaservice.saveAzioneCorrettiva(ac);
-        else this.azionecorrettivaservice.saveAzioneCorrettiva(ac);
+        this.azionecorrettivaservice.saveAzioneCorrettiva(ac);
         return "redirect:/showmenuUtente";
     }
     
+    //QUESTO METODO SERVE PER APRIRE IL FORM PER SALVARE UN'AZIONE DI VERIFICA
     @RequestMapping(value = {"/apriAzioneVerifica/{id}"}, method = RequestMethod.GET)
     public String apriAzioneVerifica(@PathVariable("id") int id, ModelMap model){
         //this.azionecorrettivaservice.deleteAzioneCorrettiva(id);
@@ -264,8 +278,39 @@ public class AppController {
         return "segnalazione";
     }
     
+    //QUESTO METODO SERVER PER SALVARE IL FORM CON L'AZIONE DI VERIFICA
+    
+    //QUESTO METODO SERVE PER FARE IL LOGOUT
     @RequestMapping(value= {"/logout"}, method = RequestMethod.POST)
     public String logout(){
 	return "redirect:/";
+    }
+    
+    //QUESTI METODI SERVONO PER FAR VEDERE LE PAGINE CONTENENTI LE TABELLE CON I DATI CHE ANDIAMO A RICAVARE (QUIDNI SEGNALAZIONI, AZIONI CORRETTIVE E AZIONI DI VERIFICA
+    @RequestMapping(value = {"/mostraSE"}, method = RequestMethod.POST)
+    public String mostraSE(ModelMap model){
+        model.addAttribute("segnalazioni", segnalazioneservice.findAllSegnalazioni());
+        return "segnalazionipage";
+    }
+    
+    @RequestMapping(value = {"/mostraAC"}, method = RequestMethod.POST)
+    public String mostraAC(ModelMap model){
+        model.addAttribute("azionicorrettive", azionecorrettivaservice.findAllAzioniCorrettive());
+        if('N' == loggeduser.getResponsabile()) return "azionicorrettivepage";
+        else return "azionicorrettivepageresp";
+    }
+    
+    @RequestMapping(value = {"/mostraAV"}, method = RequestMethod.POST)
+    public String mostraAV(ModelMap model){
+        model.addAttribute("azioniverifica", azioneverificaservice.findAllAzioniVerifica());
+        if('N' == loggeduser.getResponsabile()) return "azioniverificapage";
+        else return "azioniverificapageresp";
+    }
+    
+    //QUESTO METODO SERVE PER TORNARE AL MENU DA UNA DELLE PAGINE PRECEDENTI
+    @RequestMapping(value= {"/backtout"}, method = RequestMethod.POST)
+    public String backtout(ModelMap model){
+	if('N' == loggeduser.getResponsabile()) return "redirect:/showmenuUtente"; 
+        else return "redirect:/showmenuResp";
     }
 }
